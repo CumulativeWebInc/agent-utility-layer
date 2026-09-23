@@ -1,0 +1,57 @@
+{
+  "name": "user_auth",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Register and verify user credentials (PBKDF2-hashed) against the scoped credential store.",
+  "permissions": [
+    "identity:auth"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "register",
+          "verify",
+          "rotate"
+        ]
+      },
+      "username": {
+        "type": "string"
+      },
+      "credential": {
+        "type": "string"
+      },
+      "new_credential": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action",
+      "username",
+      "credential"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "username": {
+        "type": "string"
+      },
+      "ok": {
+        "type": "boolean"
+      },
+      "message": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No external provider. Credentials are stored as PBKDF2-HMAC-SHA256 hashes (200k rounds, per-user salt) in ctx.memory \u2014 the spine persists that store; plaintext is never stored."
+}
