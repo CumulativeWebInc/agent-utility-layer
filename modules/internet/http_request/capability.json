@@ -1,0 +1,76 @@
+{
+  "name": "http_request",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Make a real HTTP(S) request with urllib (GET/POST/PUT/PATCH/DELETE/HEAD).",
+  "permissions": [
+    "http:request"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "method": {
+        "type": "string",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE",
+          "HEAD"
+        ],
+        "default": "GET"
+      },
+      "url": {
+        "type": "string"
+      },
+      "headers": {
+        "type": "object"
+      },
+      "body": {
+        "type": "string"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 10
+      },
+      "max_response_bytes": {
+        "type": "integer",
+        "default": 1048576
+      }
+    },
+    "required": [
+      "url"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "integer"
+      },
+      "headers": {
+        "type": "object"
+      },
+      "body": {
+        "type": "string"
+      },
+      "bytes_total": {
+        "type": "integer"
+      },
+      "truncated": {
+        "type": "boolean"
+      },
+      "elapsed_ms": {
+        "type": "number"
+      },
+      "final_url": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider or credential needed; pure urllib stdlib request."
+}
