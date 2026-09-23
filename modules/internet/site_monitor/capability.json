@@ -1,0 +1,70 @@
+{
+  "name": "site_monitor",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Single uptime check of a URL (status + optional text match) with state-change detection across runs.",
+  "permissions": [
+    "http:request"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "expected_status": {
+        "type": "integer",
+        "default": 200
+      },
+      "expected_text": {
+        "type": "string"
+      },
+      "monitor_id": {
+        "type": "string"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "required": [
+      "url"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      },
+      "status": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "response_ms": {
+        "type": "number"
+      },
+      "state": {
+        "type": "string"
+      },
+      "state_changed": {
+        "type": "boolean"
+      },
+      "previous_state": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "checked_at": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider needed. Previous state is kept in ctx.memory (scoped KV)."
+}
