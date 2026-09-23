@@ -1,0 +1,42 @@
+{
+  "name": "send_slack",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Post a message to Slack via incoming webhook or bot token.",
+  "permissions": [
+    "slack:post"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "channel": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string",
+        "minLength": 1
+      },
+      "username": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "text"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "ts": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Slack incoming webhook or chat.postMessage via stdlib urllib; credentials from ctx.auth_get('slack') as JSON {webhook_url} or {bot_token}."
+}
