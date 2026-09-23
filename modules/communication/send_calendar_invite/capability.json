@@ -1,0 +1,60 @@
+{
+  "name": "send_calendar_invite",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Build an iCalendar invite and email it to attendees via SMTP.",
+  "permissions": [
+    "calendar:invite",
+    "email:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "attendees": {
+        "type": "array"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "start": {
+        "type": "string",
+        "minLength": 1
+      },
+      "end": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "attendees",
+      "title",
+      "start",
+      "end"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "invites_sent": {
+        "type": "integer"
+      },
+      "ics_uid": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "ICS built by hand (no deps), delivered as text/calendar attachment via SMTP (ctx.auth_get('smtp')). ISO-8601 start/end; naive datetimes treated as UTC."
+}
