@@ -1,0 +1,10 @@
+{
+  "module": "knowledge_base",
+  "crew": "H",
+  "tests": "6 passed in 0.19s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real chunking and real retrieval, but retrieval is LEXICAL (TF-IDF over terms), not semantic. For semantic retrieval, embed chunks and use vector_search. Chunking is word-window based, not sentence-aware."
+}
