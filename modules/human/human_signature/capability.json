@@ -1,0 +1,56 @@
+{
+  "name": "human_signature",
+  "provisional": true,
+  "pillar": "human",
+  "version": "0.1.0",
+  "description": "Send a signature REQUEST to a human signer via email (request only, not e-sign).",
+  "permissions": [
+    "human:signature",
+    "email:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "document_name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "document_text": {
+        "type": "string"
+      },
+      "signer_name": {
+        "type": "string",
+        "minLength": 1
+      },
+      "signer_email": {
+        "type": "string",
+        "format": "email"
+      },
+      "message": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "document_name",
+      "signer_name",
+      "signer_email"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "request_id": {
+        "type": "string"
+      },
+      "sent_to": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.01,
+  "provider_notes": "Email request via SMTP (ctx.auth_get('smtp')); request recorded via ctx.memory_set."
+}
