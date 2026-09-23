@@ -1,0 +1,10 @@
+{
+  "module": "cost_track",
+  "crew": "H",
+  "tests": "6 passed in 0.10s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real spend aggregation in USD. No currency conversion, no tax handling. Recording a cost here does not charge anyone \u2014 it feeds the spine billing ledger, which owns settlement."
+}
