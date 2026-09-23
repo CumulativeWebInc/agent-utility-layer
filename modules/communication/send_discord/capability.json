@@ -1,0 +1,39 @@
+{
+  "name": "send_discord",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Post a message to a Discord channel via incoming webhook.",
+  "permissions": [
+    "discord:post"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "minLength": 1
+      },
+      "username": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "message"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "message_id": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Discord webhook POST via stdlib urllib (?wait=true to capture the message id); credentials from ctx.auth_get('discord') as JSON {webhook_url}."
+}
