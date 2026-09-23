@@ -1,0 +1,83 @@
+{
+  "name": "task_queue",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "FIFO task queue with lease semantics, priority ordering, retries, and dead-letter.",
+  "permissions": [
+    "agent:task_queue"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "enqueue",
+          "lease",
+          "complete",
+          "fail",
+          "stats",
+          "purge_done"
+        ]
+      },
+      "queue": {
+        "type": "string"
+      },
+      "payload": {
+        "type": "object"
+      },
+      "priority": {
+        "type": "integer",
+        "default": 0
+      },
+      "worker": {
+        "type": "string"
+      },
+      "lease_seconds": {
+        "type": "number",
+        "default": 300
+      },
+      "task_id": {
+        "type": "string"
+      },
+      "error": {
+        "type": "string"
+      },
+      "max_attempts": {
+        "type": "integer",
+        "default": 5
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "task_id": {
+        "type": "string"
+      },
+      "task": {
+        "type": "object"
+      },
+      "leased": {
+        "type": "boolean"
+      },
+      "stats": {
+        "type": "object"
+      },
+      "purged": {
+        "type": "integer"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; FIFO + lease in SQL."
+}
