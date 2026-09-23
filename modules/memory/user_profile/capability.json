@@ -1,0 +1,56 @@
+{
+  "name": "user_profile",
+  "provisional": true,
+  "pillar": "memory",
+  "version": "0.1.0",
+  "description": "Per-user profile document store with deep-merge updates and dotted-field reads.",
+  "permissions": [
+    "memory:user_profile"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "get",
+          "update",
+          "get_field",
+          "delete"
+        ]
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "patch": {
+        "type": "object"
+      },
+      "field": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "op",
+      "user_id"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "found": {
+        "type": "boolean"
+      },
+      "profile": {
+        "type": "object"
+      },
+      "value": {}
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
