@@ -1,0 +1,10 @@
+{
+  "module": "charge_payment",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-live-via-stripe-urllib | test-provider-simulated-and-labeled | demo-fakes-labeled",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.05,
+  "kill_rule": "no real (non-simulated) usage within 60 days of listing -> kill or merge",
+  "notes": "Approval gate fires BEFORE credential use on every charge; tests prove denial blocks billing and AuthMissing fires after approval. Real Stripe path exercised via mocked urllib; no live charge ever made. Secrets never logged."
+}
