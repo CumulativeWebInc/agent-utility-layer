@@ -1,0 +1,55 @@
+{
+  "name": "human_escalate",
+  "provisional": true,
+  "pillar": "human",
+  "version": "0.1.0",
+  "description": "Escalate an issue to a human owner with a priority level (recorded internally).",
+  "permissions": [
+    "human:escalate"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "summary": {
+        "type": "string",
+        "minLength": 1
+      },
+      "priority": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ]
+      },
+      "owner": {
+        "type": "string"
+      },
+      "context": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "summary",
+      "priority"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "escalation_id": {
+        "type": "string"
+      },
+      "priority": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.01,
+  "provider_notes": "No external provider. Escalation record stored via ctx.memory_set after approval. Pair with human_notify to actually page the owner."
+}
