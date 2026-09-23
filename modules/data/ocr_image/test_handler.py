@@ -6,8 +6,7 @@ import os
 import sys
 import urllib.request
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from handler import AuthMissing, ModuleError, execute  # noqa: E402
+from .handler import AuthMissing, ModuleError, execute  # noqa: E402
 
 
 class FakeCtx:
