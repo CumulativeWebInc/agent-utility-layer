@@ -1,0 +1,10 @@
+{
+  "module": "manage_subscription",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-live-via-stripe-urllib | test-provider-simulated-and-labeled",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.05,
+  "kill_rule": "no real (non-simulated) usage within 60 days of listing -> kill or merge",
+  "notes": "create/update/cancel require approval first (tests prove denial blocks); read-only 'get' needs none (tested). Missing credential raises AuthMissing after the approval gate fires."
+}
