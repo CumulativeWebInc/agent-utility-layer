@@ -1,0 +1,10 @@
+{
+  "module": "role_assign",
+  "crew": "G",
+  "tests": "9 passed",
+  "honest_state": "code-complete, RBAC writes real | fixed v1 role vocabulary, approval-gated",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge into a sibling module",
+  "notes": "Crew G INTERNET+IDENTITY build 2026-09-23. stdlib-only, pytest green, no live network in tests."
+}
