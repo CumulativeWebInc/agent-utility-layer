@@ -1,0 +1,57 @@
+{
+  "name": "dns_lookup",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Resolve a hostname via stdlib socket (A/AAAA/CNAME only in v1).",
+  "permissions": [
+    "net:dns"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "hostname": {
+        "type": "string"
+      },
+      "record_type": {
+        "type": "string",
+        "enum": [
+          "A",
+          "AAAA",
+          "CNAME"
+        ],
+        "default": "A"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 5
+      }
+    },
+    "required": [
+      "hostname"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "hostname": {
+        "type": "string"
+      },
+      "record_type": {
+        "type": "string"
+      },
+      "answers": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "resolved": {
+        "type": "boolean"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider needed; uses the host resolver via socket.getaddrinfo."
+}
