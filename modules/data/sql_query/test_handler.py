@@ -6,8 +6,7 @@ import sqlite3
 import sys
 import tempfile
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from handler import ApprovalDenied, ModuleError, execute  # noqa: E402
+from .handler import ApprovalDenied, ModuleError, execute  # noqa: E402
 
 
 class FakeCtx:
