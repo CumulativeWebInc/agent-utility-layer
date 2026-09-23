@@ -1,0 +1,72 @@
+{
+  "name": "api_call",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Call a JSON REST API endpoint with a named credential injected as the Authorization header.",
+  "permissions": [
+    "http:request",
+    "vault:read"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "auth_provider": {
+        "type": "string"
+      },
+      "base_url": {
+        "type": "string"
+      },
+      "endpoint": {
+        "type": "string"
+      },
+      "method": {
+        "type": "string",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ],
+        "default": "GET"
+      },
+      "query": {
+        "type": "object"
+      },
+      "json_body": {
+        "type": "object"
+      },
+      "headers": {
+        "type": "object"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 15
+      }
+    },
+    "required": [
+      "auth_provider",
+      "base_url",
+      "endpoint"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "integer"
+      },
+      "data": {},
+      "elapsed_ms": {
+        "type": "number"
+      },
+      "bytes_total": {
+        "type": "integer"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Credential string comes from ctx.auth_get(auth_provider); sent as 'Authorization: Bearer <cred>'. Configure the named credential out-of-band (spine auth) \u2014 never in the repo or inputs."
+}
