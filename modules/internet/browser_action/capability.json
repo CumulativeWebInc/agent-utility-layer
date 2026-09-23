@@ -1,0 +1,62 @@
+{
+  "name": "browser_action",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Submit a plain-HTML form on a page (fetch, parse, POST) \u2014 the v1 honest stand-in for browser automation.",
+  "permissions": [
+    "http:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "submit_form"
+        ]
+      },
+      "url": {
+        "type": "string"
+      },
+      "form": {
+        "type": "object"
+      },
+      "fields": {
+        "type": "object"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 15
+      }
+    },
+    "required": [
+      "action",
+      "url",
+      "fields"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "integer"
+      },
+      "submitted_to": {
+        "type": "string"
+      },
+      "response_body_excerpt": {
+        "type": "string"
+      },
+      "fields_sent": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider needed."
+}
