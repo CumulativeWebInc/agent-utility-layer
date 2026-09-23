@@ -1,0 +1,58 @@
+{
+  "name": "role_assign",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Assign or revoke RBAC roles for a principal (admin/operator/viewer/auditor).",
+  "permissions": [
+    "identity:rbac"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "assign",
+          "revoke",
+          "list"
+        ]
+      },
+      "principal": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "principal": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      },
+      "ok": {
+        "type": "boolean"
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider. Writes to the ctx.memory RBAC store consumed by permission_check."
+}
