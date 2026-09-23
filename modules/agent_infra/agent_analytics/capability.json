@@ -1,0 +1,67 @@
+{
+  "name": "agent_analytics",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Aggregations over the agent event log: counts by level/event, error rates, top events.",
+  "permissions": [
+    "agent:analytics"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "summary",
+          "errors",
+          "event_counts"
+        ]
+      },
+      "agent": {
+        "type": "string"
+      },
+      "window_hours": {
+        "type": "number",
+        "default": 24
+      },
+      "event": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "integer",
+        "default": 20
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "total": {
+        "type": "integer"
+      },
+      "by_level": {
+        "type": "object"
+      },
+      "by_event": {
+        "type": "array"
+      },
+      "error_rate": {
+        "type": "number"
+      },
+      "entries": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Reads the agent_log JSONL store; pure-Python aggregation."
+}
