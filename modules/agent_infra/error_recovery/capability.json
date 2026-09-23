@@ -1,0 +1,66 @@
+{
+  "name": "error_recovery",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Recovery playbook registry: register playbooks per error class, get regex-matched recovery suggestions.",
+  "permissions": [
+    "agent:error_recovery"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "register",
+          "suggest",
+          "list",
+          "log_recovery"
+        ]
+      },
+      "error_class": {
+        "type": "string"
+      },
+      "match_regex": {
+        "type": "string"
+      },
+      "steps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "message": {
+        "type": "string"
+      },
+      "action": {
+        "type": "string"
+      },
+      "outcome": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "playbooks": {
+        "type": "array"
+      },
+      "suggestions": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; regex matching via stdlib re."
+}
