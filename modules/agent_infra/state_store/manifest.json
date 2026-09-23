@@ -1,0 +1,10 @@
+{
+  "module": "state_store",
+  "crew": "H",
+  "tests": "8 passed in 0.22s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real namespaced KV with TTL (lazy expiry) and CAS versioning. Optimistic concurrency only \u2014 no transactions exposed across keys."
+}
