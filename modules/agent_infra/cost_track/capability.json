@@ -1,0 +1,63 @@
+{
+  "name": "cost_track",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Spend ledger per agent/capability: record micro-costs, aggregate totals. Feeds spine billing.",
+  "permissions": [
+    "billing:cost_track"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "record",
+          "totals",
+          "by_capability",
+          "by_agent"
+        ]
+      },
+      "agent": {
+        "type": "string"
+      },
+      "capability": {
+        "type": "string"
+      },
+      "amount_usd": {
+        "type": "number"
+      },
+      "memo": {
+        "type": "string"
+      },
+      "since_ts": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "total_usd": {
+        "type": "number"
+      },
+      "count": {
+        "type": "integer"
+      },
+      "rows": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
