@@ -1,0 +1,49 @@
+{
+  "name": "human_forms",
+  "provisional": true,
+  "pillar": "human",
+  "version": "0.1.0",
+  "description": "Build a structured form definition (typed fields) for a human to fill in.",
+  "permissions": [
+    "human:forms"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "fields": {
+        "type": "array"
+      },
+      "submit_label": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "title",
+      "fields"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "form_id": {
+        "type": "string"
+      },
+      "field_count": {
+        "type": "integer"
+      },
+      "preview_path": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No external provider. Form spec validated (text/number/boolean/choice/date; choice requires options) and stored via ctx.memory_set."
+}
