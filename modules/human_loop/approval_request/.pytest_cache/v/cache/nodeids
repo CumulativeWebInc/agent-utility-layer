@@ -1,0 +1,12 @@
+[
+  "test_handler.py::test_bad_phone_rejected",
+  "test_handler.py::test_delivery_never_claims_sent",
+  "test_handler.py::test_delivery_queued_label_when_provider_configured",
+  "test_handler.py::test_ephemeral_fallback_honestly_labeled",
+  "test_handler.py::test_happy_path_with_signing_key",
+  "test_handler.py::test_invalid_channel_rejected",
+  "test_handler.py::test_missing_or_long_summary_rejected",
+  "test_handler.py::test_outputs_match_schema_keys",
+  "test_handler.py::test_tampered_record_fails_verification",
+  "test_handler.py::test_timeout_bounds"
+]
