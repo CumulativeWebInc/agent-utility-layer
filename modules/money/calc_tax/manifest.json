@@ -1,0 +1,10 @@
+{
+  "module": "calc_tax",
+  "crew": "D",
+  "tests": "8 passed",
+  "honest_state": "code-complete, provider-free | estimate-table-2026-09, not-tax-advice",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.01,
+  "kill_rule": "no real usage within 60 days of listing -> kill or merge",
+  "notes": "Pure computation, no auth/approval. 10 jurisdictions tabulated + CUSTOM override; tax-inclusive backout tested. Disclaimer stamped on every output."
+}
