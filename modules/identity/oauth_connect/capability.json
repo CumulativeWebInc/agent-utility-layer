@@ -1,0 +1,91 @@
+{
+  "name": "oauth_connect",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "OAuth2 flow scaffolding: build a standards-compliant authorization URL, and exchange a code for tokens.",
+  "permissions": [
+    "identity:oauth",
+    "http:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "build_auth_url",
+          "exchange_code"
+        ]
+      },
+      "provider": {
+        "type": "string"
+      },
+      "client_id": {
+        "type": "string"
+      },
+      "redirect_uri": {
+        "type": "string"
+      },
+      "scope": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "state": {
+        "type": "string"
+      },
+      "authorization_endpoint": {
+        "type": "string"
+      },
+      "token_endpoint": {
+        "type": "string"
+      },
+      "code": {
+        "type": "string"
+      },
+      "secret_provider": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action",
+      "provider",
+      "client_id",
+      "redirect_uri"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "provider": {
+        "type": "string"
+      },
+      "auth_url": {
+        "type": "string"
+      },
+      "state": {
+        "type": "string"
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "token_type": {
+        "type": "string"
+      },
+      "expires_in": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      },
+      "refresh_token_issued": {
+        "type": "boolean"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Bring your provider credentials: client_secret comes from ctx.auth_get(secret_provider) at exchange time. Provider endpoints are passed in (authorization_endpoint/token_endpoint) so any RFC 6749 provider works \u2014 nothing is hardcoded."
+}
