@@ -1,0 +1,70 @@
+{
+  "name": "apikey_vault",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Encrypted-at-rest API key vault: store, retrieve, rotate, revoke, list (values never listed).",
+  "permissions": [
+    "vault:write",
+    "vault:read"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "store",
+          "retrieve",
+          "rotate",
+          "revoke",
+          "list"
+        ]
+      },
+      "key_name": {
+        "type": "string"
+      },
+      "key_value": {
+        "type": "string"
+      },
+      "provider": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "key_name": {
+        "type": "string"
+      },
+      "ok": {
+        "type": "boolean"
+      },
+      "value": {
+        "type": "string"
+      },
+      "last4": {
+        "type": "string"
+      },
+      "provider": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      },
+      "keys": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Master key from ctx.auth_get('vault_master'). Vault blobs live in ctx.memory (spine-persisted). Never pass key_value to 'list'; list returns names + last4 only."
+}
