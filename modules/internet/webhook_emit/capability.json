@@ -1,0 +1,66 @@
+{
+  "name": "webhook_emit",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Emit a signed JSON webhook POST to a target URL (HMAC-SHA256 signature header when configured).",
+  "permissions": [
+    "http:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "event_name": {
+        "type": "string"
+      },
+      "payload": {
+        "type": "object"
+      },
+      "sign": {
+        "type": "boolean",
+        "default": true
+      },
+      "secret_provider": {
+        "type": "string"
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "required": [
+      "url",
+      "event_name",
+      "payload"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "integer"
+      },
+      "delivered": {
+        "type": "boolean"
+      },
+      "signature": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "response_body": {
+        "type": "string"
+      },
+      "elapsed_ms": {
+        "type": "number"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Signing secret (if sign=true) from ctx.auth_get(secret_provider), sent as X-Webhook-Signature (sha256=<hex>). Without a secret the POST is sent unsigned."
+}
