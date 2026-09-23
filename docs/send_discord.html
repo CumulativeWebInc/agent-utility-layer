@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>send_discord — demo</title><style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:960px;
+margin:0 auto;padding:24px;line-height:1.5;color:#1a1a1a;background:#fafafa}
+.banner{background:#fff3cd;border:2px solid #d4a017;border-radius:8px;padding:12px 16px;
+font-weight:700;margin-bottom:24px}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+a{color:#0b5fff}.meta{color:#555;font-size:.9em}
+label{display:block;margin:10px 0 4px;font-weight:600}
+input[type=text],input[type=number],textarea,select{width:100%;padding:8px;
+border:1px solid #bbb;border-radius:4px;font-size:1em}
+button{background:#0b5fff;color:#fff;border:0;border-radius:6px;padding:10px 18px;
+font-size:1em;cursor:pointer;margin-top:14px}
+pre{background:#111;color:#d7ffd7;padding:12px;border-radius:6px;overflow:auto;
+max-height:420px}
+footer{margin-top:40px;color:#777;font-size:.85em}
+code{background:#eee;padding:1px 5px;border-radius:4px}
+</style></head>
+<body>
+<div class="banner">⚠️ DEMO — simulated providers. Nothing on this page touches a real provider. Results are not real.</div>
+<p><a href="index.html">&larr; all modules</a></p>
+<h1>send_discord</h1>
+<p>Post a message to a Discord channel via incoming webhook.</p>
+<div class="card meta">
+pillar: <b>communication</b> &middot; version 0.1.0
+&middot; setup $1.0 &middot; per execution $0.001<br>
+permissions: <code>discord:post</code> &middot; provisional: True
+</div>
+<h2>Try it (demo)</h2>
+<div class="card">
+<label>exec API base <span class="meta">(must be running with demo enabled)</span></label>
+<input type="text" id="apiBase" value="http://127.0.0.1:8741">
+<label>agent_key</label>
+<input type="text" id="agentKey" placeholder="paste a dev API key">
+<label for='f_message'>message * <span class='meta'>(string)</span></label><textarea id='f_message' rows='4' required></textarea><label for='f_username'>username <span class='meta'>(string)</span></label><input type='text' id='f_username'>
+<button onclick='runDemo("send_discord", JSON.parse(document.getElementById("schema").textContent), document.getElementById("apiBase").value, document.getElementById("agentKey").value)'>Run demo</button>
+</div>
+<h2>Response</h2>
+<pre id="out">response appears here</pre>
+<script id="schema" type="application/json">{&quot;type&quot;: &quot;object&quot;, &quot;properties&quot;: {&quot;message&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;minLength&quot;: 1}, &quot;username&quot;: {&quot;type&quot;: &quot;string&quot;}}, &quot;required&quot;: [&quot;message&quot;]}</script>
+<script>
+async function runDemo(capability, schema, apiBase, key) {
+  const inputs = {};
+  const props = schema.properties || {};
+  for (const [name, spec] of Object.entries(props)) {
+    const el = document.getElementById('f_' + name);
+    if (!el) continue;
+    let v;
+    const t = spec.type;
+    if (t === 'boolean') v = el.checked;
+    else if (t === 'integer') v = el.value === '' ? null : parseInt(el.value, 10);
+    else if (t === 'number') v = el.value === '' ? null : parseFloat(el.value);
+    else if (t === 'array' || t === 'object') {
+      v = el.value.trim() === '' ? null : JSON.parse(el.value);
+    } else v = el.value;
+    if (v !== null && v !== '' ) inputs[name] = v;
+  }
+  const out = document.getElementById('out');
+  out.textContent = 'running (demo mode, simulated providers)...';
+  try {
+    const resp = await fetch(apiBase + '/v1/execute', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({capability, inputs, agent_key: key, demo: true})
+    });
+    const data = await resp.json();
+    out.textContent = JSON.stringify(data, null, 2);
+  } catch (e) {
+    out.textContent = 'ERROR: ' + e + '\nIs the exec API running? Start it with:\n  AUL_DEMO=1 python3 spine/exec_api.py --port 8741';
+  }
+}
+</script>
+<footer>© 2026 Cumulative Web Inc &middot; provisional module name &middot; demo results are not real</footer>
+</body></html>
