@@ -1,0 +1,10 @@
+{
+  "module": "track_expense",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-free | scoped-ledger-in-ctx.memory",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.01,
+  "kill_rule": "no real usage within 60 days of listing -> kill or merge",
+  "notes": "Internal bookkeeping only, reversible. add/list/summary with category filter. Multi-currency stored as-is, no FX conversion."
+}
