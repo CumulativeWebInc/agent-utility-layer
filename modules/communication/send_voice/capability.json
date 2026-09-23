@@ -1,0 +1,48 @@
+{
+  "name": "send_voice",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Place an outbound voice call that speaks supplied text (Twilio TwiML).",
+  "permissions": [
+    "voice:call"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "to": {
+        "type": "string",
+        "format": "phone"
+      },
+      "text": {
+        "type": "string",
+        "minLength": 1
+      },
+      "voice": {
+        "type": "string"
+      },
+      "from_number": {
+        "type": "string",
+        "format": "phone"
+      }
+    },
+    "required": [
+      "to",
+      "text"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "call_sid": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Twilio Calls API with inline TwiML <Say> via stdlib urllib; credentials from ctx.auth_get('twilio')."
+}
