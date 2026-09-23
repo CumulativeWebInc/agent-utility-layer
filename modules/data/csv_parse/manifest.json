@@ -1,0 +1,1 @@
+{"crew":"E","honest_state":"code-complete, real-csv-stdlib","kill_rule":"no real usage in 60 days -> kill or merge","module":"csv_parse","notes":"Real stdlib csv parsing. Values returned as strings (no type inference).","price_per_exec_usd":0.001,"price_setup_usd":1.0,"tests":"9 passed"}
