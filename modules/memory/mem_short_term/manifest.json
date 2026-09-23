@@ -1,0 +1,10 @@
+{
+  "module": "mem_short_term",
+  "crew": "H",
+  "tests": "6 passed in 0.36s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real sqlite persistence with TTL enforced lazily on read (expired keys are purged when read/listed). Single-machine store, not a distributed cache. TTL is best-effort wall-clock."
+}
