@@ -1,0 +1,10 @@
+{
+  "module": "issue_refund",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-live-via-stripe-urllib | test-provider-simulated-and-labeled",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.05,
+  "kill_rule": "no real (non-simulated) usage within 60 days of listing -> kill or merge",
+  "notes": "Approval gate fires before any refund; tests prove denial blocks and partial amounts pass through. Real Stripe path exercised via mocked urllib. Secrets never logged."
+}
