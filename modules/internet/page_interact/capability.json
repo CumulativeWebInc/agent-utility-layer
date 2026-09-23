@@ -1,0 +1,77 @@
+{
+  "name": "page_interact",
+  "provisional": true,
+  "pillar": "internet",
+  "version": "0.1.0",
+  "description": "Fetch a page and extract structured content (title, headings, links, forms, meta, text) with stdlib HTML parsing.",
+  "permissions": [
+    "http:request"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "extract": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "title",
+            "headings",
+            "links",
+            "forms",
+            "meta",
+            "text"
+          ]
+        },
+        "default": [
+          "title",
+          "headings",
+          "links"
+        ]
+      },
+      "max_bytes": {
+        "type": "integer",
+        "default": 524288
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "default": 10
+      }
+    },
+    "required": [
+      "url"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "headings": {
+        "type": "array"
+      },
+      "links": {
+        "type": "array"
+      },
+      "forms": {
+        "type": "array"
+      },
+      "meta": {
+        "type": "object"
+      },
+      "text_excerpt": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider needed."
+}
