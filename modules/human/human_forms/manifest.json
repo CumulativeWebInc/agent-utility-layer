@@ -1,0 +1,10 @@
+{
+  "module": "human_forms",
+  "crew": "C",
+  "tests": "8 passed",
+  "honest_state": "code-complete, providers-live-via-stdlib | demo-fakes-labeled | no credentials configured yet -> AuthMissing by design",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Handler: validate inputs -> approval_request (external/control-plane actions) -> provider via stdlib with ctx.auth_get credentials -> real result. No credential -> AuthMissing. Never fabricates provider results."
+}
