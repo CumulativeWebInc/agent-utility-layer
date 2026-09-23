@@ -1,0 +1,45 @@
+{
+  "name": "send_sms",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Send an SMS text message via Twilio's REST API.",
+  "permissions": [
+    "sms:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "to": {
+        "type": "string",
+        "format": "phone"
+      },
+      "message": {
+        "type": "string",
+        "minLength": 1
+      },
+      "from_number": {
+        "type": "string",
+        "format": "phone"
+      }
+    },
+    "required": [
+      "to",
+      "message"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "message_sid": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Twilio Messages API via stdlib urllib; credentials from ctx.auth_get('twilio') as JSON {account_sid, auth_token, from_number}."
+}
