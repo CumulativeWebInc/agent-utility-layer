@@ -1,0 +1,67 @@
+{
+  "name": "state_store",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Namespaced key-value store with TTL and compare-and-set for optimistic concurrency.",
+  "permissions": [
+    "memory:state_store"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "set",
+          "get",
+          "delete",
+          "list",
+          "cas"
+        ]
+      },
+      "namespace": {
+        "type": "string"
+      },
+      "key": {
+        "type": "string"
+      },
+      "value": {},
+      "ttl_seconds": {
+        "type": "number"
+      },
+      "prefix": {
+        "type": "string"
+      },
+      "expected_version": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "op",
+      "namespace"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "found": {
+        "type": "boolean"
+      },
+      "value": {},
+      "version": {
+        "type": "integer"
+      },
+      "keys": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
