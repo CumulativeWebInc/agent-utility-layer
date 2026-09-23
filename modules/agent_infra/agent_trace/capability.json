@@ -1,0 +1,74 @@
+{
+  "name": "agent_trace",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Distributed-trace style span store: start/end spans, assemble trace trees.",
+  "permissions": [
+    "agent:trace"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "start",
+          "end",
+          "get_trace",
+          "list_traces"
+        ]
+      },
+      "trace_id": {
+        "type": "string"
+      },
+      "span_id": {
+        "type": "string"
+      },
+      "parent_id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "agent": {
+        "type": "string"
+      },
+      "end_status": {
+        "type": "string"
+      },
+      "output": {},
+      "limit": {
+        "type": "integer",
+        "default": 50
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "trace_id": {
+        "type": "string"
+      },
+      "span_id": {
+        "type": "string"
+      },
+      "tree": {
+        "type": "object"
+      },
+      "traces": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; tree assembly in pure Python."
+}
