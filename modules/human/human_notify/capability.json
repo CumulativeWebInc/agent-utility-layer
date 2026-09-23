@@ -1,0 +1,55 @@
+{
+  "name": "human_notify",
+  "provisional": true,
+  "pillar": "human",
+  "version": "0.1.0",
+  "description": "Push a notification to a human via the configured notification webhook.",
+  "permissions": [
+    "human:notify"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "recipient": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "message": {
+        "type": "string",
+        "minLength": 1
+      },
+      "channel": {
+        "type": "string",
+        "enum": [
+          "push",
+          "email",
+          "sms",
+          "in-app"
+        ]
+      }
+    },
+    "required": [
+      "recipient",
+      "title",
+      "message"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "notification_id": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.01,
+  "provider_notes": "Generic webhook POST via stdlib urllib; credentials from ctx.auth_get('notify') as JSON {webhook_url}."
+}
