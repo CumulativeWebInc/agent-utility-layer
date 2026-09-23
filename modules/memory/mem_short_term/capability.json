@@ -1,0 +1,64 @@
+{
+  "name": "mem_short_term",
+  "provisional": true,
+  "pillar": "memory",
+  "version": "0.1.0",
+  "description": "Ephemeral per-session key-value memory with TTL. Backs working memory for a single agent session.",
+  "permissions": [
+    "memory:short_term"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "set",
+          "get",
+          "list",
+          "delete",
+          "clear"
+        ]
+      },
+      "session_id": {
+        "type": "string"
+      },
+      "key": {
+        "type": "string"
+      },
+      "value": {},
+      "ttl_seconds": {
+        "type": "number",
+        "default": 3600
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "found": {
+        "type": "boolean"
+      },
+      "value": {},
+      "key": {
+        "type": "string"
+      },
+      "entries": {
+        "type": "array"
+      },
+      "cleared": {
+        "type": "number"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
