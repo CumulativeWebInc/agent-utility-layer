@@ -1,0 +1,10 @@
+{
+  "module": "agent_monitor",
+  "crew": "H",
+  "tests": "6 passed in 0.26s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real heartbeat tracking; staleness is computed at query time against wall clock. No push alerting \u2014 consumers poll status/list."
+}
