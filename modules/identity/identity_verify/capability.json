@@ -1,0 +1,81 @@
+{
+  "name": "identity_verify",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Identity verification case workflow: start -> submit_evidence -> decision (approve/reject) -> status.",
+  "permissions": [
+    "identity:verify"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "start",
+          "submit_evidence",
+          "decision",
+          "status"
+        ]
+      },
+      "subject": {
+        "type": "string"
+      },
+      "case_id": {
+        "type": "string"
+      },
+      "evidence_type": {
+        "type": "string"
+      },
+      "evidence_ref": {
+        "type": "string"
+      },
+      "decision": {
+        "type": "string",
+        "enum": [
+          "approve",
+          "reject"
+        ]
+      },
+      "notes": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "case_id": {
+        "type": "string"
+      },
+      "action": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "subject": {
+        "type": "string"
+      },
+      "evidence": {
+        "type": "array"
+      },
+      "decided_at": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "notes": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider. Cases live in ctx.memory; evidence is recorded by reference (type + storage ref)."
+}
