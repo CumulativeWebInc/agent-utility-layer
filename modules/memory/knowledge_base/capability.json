@@ -1,0 +1,79 @@
+{
+  "name": "knowledge_base",
+  "provisional": true,
+  "pillar": "memory",
+  "version": "0.1.0",
+  "description": "Document store with word-window chunking and lexical (TF-IDF) retrieval over chunks.",
+  "permissions": [
+    "memory:knowledge_base"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "add_document",
+          "get_document",
+          "delete_document",
+          "list_documents",
+          "retrieve"
+        ]
+      },
+      "doc_id": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "text": {
+        "type": "string"
+      },
+      "metadata": {
+        "type": "object"
+      },
+      "chunk_words": {
+        "type": "integer",
+        "default": 200
+      },
+      "overlap_words": {
+        "type": "integer",
+        "default": 40
+      },
+      "query": {
+        "type": "string"
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 5
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "doc_id": {
+        "type": "string"
+      },
+      "chunks": {
+        "type": "integer"
+      },
+      "results": {
+        "type": "array"
+      },
+      "documents": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; chunking + TF-IDF scoring in pure Python."
+}
