@@ -1,0 +1,49 @@
+{
+  "name": "permission_check",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Evaluate an RBAC allow/deny for a principal, action, and resource against stored grants.",
+  "permissions": [
+    "identity:rbac"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "resource": {
+        "type": "string"
+      },
+      "principal": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "action",
+      "resource",
+      "principal"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "allowed": {
+        "type": "boolean"
+      },
+      "rule": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reason": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "No provider. Reads role assignments + grants from ctx.memory (written by role_assign)."
+}
