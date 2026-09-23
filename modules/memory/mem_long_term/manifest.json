@@ -1,0 +1,10 @@
+{
+  "module": "mem_long_term",
+  "crew": "H",
+  "tests": "6 passed in 0.11s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real durable sqlite store. Recall is exact-key; query filters by tag/importance only \u2014 semantic recall is vector_search's job, not this module's."
+}
