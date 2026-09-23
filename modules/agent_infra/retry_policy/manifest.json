@@ -1,0 +1,10 @@
+{
+  "module": "retry_policy",
+  "crew": "H",
+  "tests": "7 passed in 0.05s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real backoff computation, but this module does NOT sleep or retry anything itself \u2014 the caller executes retries using the computed delays. Dead-letter is a real persistent store."
+}
