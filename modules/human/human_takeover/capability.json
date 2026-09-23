@@ -1,0 +1,47 @@
+{
+  "name": "human_takeover",
+  "provisional": true,
+  "pillar": "human",
+  "version": "0.1.0",
+  "description": "Transfer control of a task from the agent to a human operator.",
+  "permissions": [
+    "human:takeover"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "task_id": {
+        "type": "string",
+        "minLength": 1
+      },
+      "reason": {
+        "type": "string",
+        "minLength": 1
+      },
+      "handoff_note": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "task_id",
+      "reason"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "takeover_id": {
+        "type": "string"
+      },
+      "control": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.01,
+  "provider_notes": "No external provider. Control-plane change recorded via ctx.memory_set (task_control:<task_id> = human) after approval."
+}
