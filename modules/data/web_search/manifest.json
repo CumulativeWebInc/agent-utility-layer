@@ -1,0 +1,1 @@
+{"crew":"E","honest_state":"code-complete, live-via-provider-keys | no-key-raises-authmissing | demo-fakes-labeled","kill_rule":"no real usage in 60 days -> kill or merge","module":"web_search","notes":"Query builder + provider hook. Never fabricates results.","price_per_exec_usd":0.005,"price_setup_usd":1.0,"tests":"9 passed"}
