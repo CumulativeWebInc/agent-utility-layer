@@ -1,0 +1,67 @@
+{
+  "name": "secret_store",
+  "provisional": true,
+  "pillar": "identity",
+  "version": "0.1.0",
+  "description": "Versioned encrypted secret storage for arbitrary named secrets (history + rollback).",
+  "permissions": [
+    "vault:write",
+    "vault:read"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "store",
+          "retrieve",
+          "list",
+          "versions",
+          "rollback"
+        ]
+      },
+      "name": {
+        "type": "string"
+      },
+      "value": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      }
+    },
+    "required": [
+      "action"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "ok": {
+        "type": "boolean"
+      },
+      "value": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      },
+      "versions": {
+        "type": "array"
+      },
+      "history": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "Same crypto construction and master key ('vault_master' via ctx.auth_get) as apikey_vault; separate namespace. Blobs in ctx.memory."
+}
