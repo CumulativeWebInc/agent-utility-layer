@@ -1,0 +1,10 @@
+{
+  "module": "job_schedule",
+  "crew": "H",
+  "tests": "8 passed in 0.16s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "Real cron/interval parsing and due computation. This module never executes jobs \u2014 the spine polls `due` and dispatches. Cron supports *, */n, lists, ranges (no named months/days). Times are UTC epoch seconds."
+}
