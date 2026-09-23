@@ -1,0 +1,66 @@
+{
+  "name": "job_schedule",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Schedule definitions (cron or interval) with real due-job computation. Execution hooks to the spine.",
+  "permissions": [
+    "agent:job_schedule"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "create",
+          "list",
+          "due",
+          "mark_run",
+          "delete",
+          "next_runs"
+        ]
+      },
+      "name": {
+        "type": "string"
+      },
+      "schedule": {
+        "type": "string"
+      },
+      "payload": {
+        "type": "object"
+      },
+      "enabled": {
+        "type": "boolean",
+        "default": true
+      },
+      "now_ts": {
+        "type": "number"
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "next_run": {
+        "type": "number"
+      },
+      "due": {
+        "type": "array"
+      },
+      "jobs": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; 5-field cron parser in pure Python."
+}
