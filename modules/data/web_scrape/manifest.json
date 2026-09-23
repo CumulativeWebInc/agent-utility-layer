@@ -1,0 +1,1 @@
+{"crew":"E","honest_state":"code-complete, real-http-stdlib | no-js-rendering (documented)","kill_rule":"no real usage in 60 days -> kill or merge","module":"web_scrape","notes":"Real fetch via urllib + html.parser. No JS rendering.","price_per_exec_usd":0.005,"price_setup_usd":1.0,"tests":"7 passed"}
