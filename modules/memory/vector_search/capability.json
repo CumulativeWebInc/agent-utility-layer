@@ -1,0 +1,68 @@
+{
+  "name": "vector_search",
+  "provisional": true,
+  "pillar": "memory",
+  "version": "0.1.0",
+  "description": "Vector similarity store: upsert embeddings, run real cosine-similarity top-k search.",
+  "permissions": [
+    "memory:vector_search"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "upsert",
+          "get",
+          "delete",
+          "search",
+          "count"
+        ]
+      },
+      "id": {
+        "type": "string"
+      },
+      "embedding": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "metadata": {
+        "type": "object"
+      },
+      "query_embedding": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "top_k": {
+        "type": "integer",
+        "default": 5
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "results": {
+        "type": "array"
+      },
+      "count": {
+        "type": "integer"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; embeddings stored as JSON, cosine similarity computed in Python."
+}
