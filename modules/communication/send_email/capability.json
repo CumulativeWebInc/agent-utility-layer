@@ -1,0 +1,59 @@
+{
+  "name": "send_email",
+  "provisional": true,
+  "pillar": "communication",
+  "version": "0.1.0",
+  "description": "Send an email via the configured SMTP provider.",
+  "permissions": [
+    "email:send"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "to": {
+        "type": "string",
+        "format": "email"
+      },
+      "subject": {
+        "type": "string",
+        "minLength": 1
+      },
+      "body": {
+        "type": "string",
+        "minLength": 1
+      },
+      "cc": {
+        "type": "array"
+      },
+      "bcc": {
+        "type": "array"
+      },
+      "html_body": {
+        "type": "string"
+      },
+      "reply_to": {
+        "type": "string",
+        "format": "email"
+      }
+    },
+    "required": [
+      "to",
+      "subject",
+      "body"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "message_id": {
+        "type": "string"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "SMTP via stdlib smtplib; credentials from ctx.auth_get('smtp') as JSON {host, port, username, password, from_addr, use_tls}."
+}
