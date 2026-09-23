@@ -1,0 +1,1 @@
+{"crew":"E","honest_state":"code-complete, stdlib-pdf-parse-real | encrypted-and-scanned-rejected-with-honest-errors","kill_rule":"no real usage in 60 days -> kill or merge","module":"pdf_extract","notes":"Stdlib-only PDF text extraction; honest about limits (no OCR, no encryption).","price_per_exec_usd":0.001,"price_setup_usd":1.0,"tests":"9 passed"}
