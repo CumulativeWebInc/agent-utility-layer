@@ -1,0 +1,80 @@
+{
+  "name": "convo_history",
+  "provisional": true,
+  "pillar": "memory",
+  "version": "0.1.0",
+  "description": "Append-only conversation history per session with paged retrieval.",
+  "permissions": [
+    "memory:convo_history"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "append",
+          "history",
+          "sessions",
+          "clear",
+          "search"
+        ]
+      },
+      "session_id": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string",
+        "enum": [
+          "user",
+          "assistant",
+          "system",
+          "tool"
+        ]
+      },
+      "content": {
+        "type": "string"
+      },
+      "metadata": {
+        "type": "object"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "limit": {
+        "type": "integer",
+        "default": 50
+      },
+      "query": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "message_id": {
+        "type": "string"
+      },
+      "messages": {
+        "type": "array"
+      },
+      "sessions": {
+        "type": "array"
+      },
+      "cleared": {
+        "type": "integer"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "sqlite3 via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
