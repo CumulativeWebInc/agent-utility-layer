@@ -1,0 +1,72 @@
+{
+  "name": "agent_log",
+  "provisional": true,
+  "pillar": "agent_infra",
+  "version": "0.1.0",
+  "description": "Structured JSONL event log for agents: write entries, query by agent/level/event/time.",
+  "permissions": [
+    "agent:log"
+  ],
+  "inputs_schema": {
+    "type": "object",
+    "properties": {
+      "op": {
+        "type": "string",
+        "description": "Operation to perform.",
+        "enum": [
+          "write",
+          "query",
+          "tail"
+        ]
+      },
+      "agent": {
+        "type": "string"
+      },
+      "level": {
+        "type": "string",
+        "enum": [
+          "DEBUG",
+          "INFO",
+          "WARN",
+          "ERROR"
+        ]
+      },
+      "event": {
+        "type": "string"
+      },
+      "data": {
+        "type": "object"
+      },
+      "since_ts": {
+        "type": "number"
+      },
+      "limit": {
+        "type": "integer",
+        "default": 100
+      }
+    },
+    "required": [
+      "op"
+    ]
+  },
+  "outputs_schema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string"
+      },
+      "entry_id": {
+        "type": "string"
+      },
+      "ts": {
+        "type": "number"
+      },
+      "entries": {
+        "type": "array"
+      }
+    }
+  },
+  "setup_price_usd": 1.0,
+  "price_per_execution_usd": 0.001,
+  "provider_notes": "JSONL file via stdlib; store dir from ctx.store_dir, $AUL_STORE_DIR, or ~/.aul/data."
+}
