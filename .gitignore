@@ -1,0 +1,10 @@
+# Secrets and local state — NEVER commit
+keys.json
+*.keys
+credentials.json
+ledger*.jsonl
+approvals*.jsonl
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
