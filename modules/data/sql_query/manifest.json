@@ -1,0 +1,1 @@
+{"crew":"E","honest_state":"code-complete, real-sqlite3 | writes-require-approval","kill_rule":"no real usage in 60 days -> kill or merge","module":"sql_query","notes":"Real sqlite3. Read-only default; writes gated by human approval.","price_per_exec_usd":0.001,"price_setup_usd":1.0,"tests":"7 passed"}
