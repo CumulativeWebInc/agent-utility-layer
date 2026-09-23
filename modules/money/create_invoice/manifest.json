@@ -1,0 +1,10 @@
+{
+  "module": "create_invoice",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-free | invoices-persisted-to-ctx.memory",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.01,
+  "kill_rule": "no real usage within 60 days of listing -> kill or merge",
+  "notes": "Document generation only \u2014 no approval/auth needed, tests assert both are not required. Decimal half-up math. Output is HTML; PDF export unbuilt."
+}
