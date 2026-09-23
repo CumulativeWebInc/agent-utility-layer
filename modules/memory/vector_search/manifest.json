@@ -1,0 +1,10 @@
+{
+  "module": "vector_search",
+  "crew": "H",
+  "tests": "6 passed in 0.38s",
+  "honest_state": "code-complete, tests-green, stores-real-sqlite-jsonl | no-external-providers",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.001,
+  "kill_rule": "no real usage in 60 days -> kill or merge",
+  "notes": "HONEST: no embedding model is bundled \u2014 the caller MUST supply embedding vectors. $0 options: sentence-transformers, fastembed, or any embedding API (vectors passed in). Search is exact brute-force cosine over stored vectors; no ANN index (fine to ~100k vectors)."
+}
