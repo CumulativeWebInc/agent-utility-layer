@@ -1,0 +1,10 @@
+{
+  "module": "financial_report",
+  "crew": "D",
+  "tests": "7 passed",
+  "honest_state": "code-complete, provider-free | aggregates-sibling-ledger-keys",
+  "price_setup_usd": 1.0,
+  "price_per_exec_usd": 0.01,
+  "kill_rule": "no real usage within 60 days of listing -> kill or merge",
+  "notes": "Read-only aggregation of ctx.memory invoices+expenses. Empty ledger yields honest zero report. 'Invoiced' labeled as issued-not-collected on the page; no FX conversion."
+}
